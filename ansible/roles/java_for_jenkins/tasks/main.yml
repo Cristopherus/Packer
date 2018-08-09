@@ -1,7 +1,0 @@
----
-
-  - name: jdk for jenkins
-    yum: pkg=java-1.8.0-openjdk state=installed
-
-  - name: remove java7
-    yum: pkg=java-1.7.0-openjdk state=removed

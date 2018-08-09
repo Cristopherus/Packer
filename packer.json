@@ -15,19 +15,24 @@
     "instance_type": "{{user `instance_type`}}",
     "ssh_username": "ec2-user",
     "ami_name": "packer-demo {{timestamp}}"
-  }],
+  },
+{
+  "type": "virtualbox-iso",
+  "guest_os_type": "Ubuntu_64",
+  "iso_url": "http://releases.ubuntu.com/12.04/ubuntu-12.04.5-server-i386.iso",
+  "iso_checksum": "1214cd22448338b60bb24f583dd8741a",
+  "iso_checksum_type": "md5",
+  "ssh_username": "packer",
+  "ssh_password": "packer",
+  "shutdown_command": "echo 'packer' | sudo -S shutdown -P now"
+}
+],
 
   "provisioners": [
     {
         "type": "shell",
         "script": "ansible-script.sh"
-    },
-    {
-        "type": "ansible-local",
-        "playbook_file": "ansible/devops_tut.yml",
-        "role_paths": [
-            "ansible/roles"
-        ],
-        "playbook_dir": "ansible"
-}  ]
+    } ],
+  
+  "post-processors": ["vagrant"]
 }
