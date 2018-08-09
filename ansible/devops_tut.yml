@@ -1,0 +1,14 @@
+---
+
+- name: Run 5 roles
+  hosts: localhost
+  connection: local
+  become: true
+  become_method: sudo
+  gather_facts: false
+  roles:
+    - main_tools
+    - java_for_jenkins
+    - install_jenkins
+    - nginx
+
